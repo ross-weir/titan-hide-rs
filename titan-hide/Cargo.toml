@@ -1,0 +1,9 @@
+[package]
+name = "titan-hide"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+windows = "0.21"
+win-bindings = { path = "../bindings/win-bindings" }
+titan-hide-bindings = { path = "../bindings/titan-hide-bindings" }
