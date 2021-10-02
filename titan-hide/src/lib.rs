@@ -63,7 +63,7 @@ impl TitanHide {
         };
         let hide_info = HIDE_INFO {
             Command: cmd,
-            Type: 0, // currently just use all
+            Type: 0xffffffffu32, // currently just use all
             Pid: pid,
         };
         let bytes_written = Box::new(0 as u32);
