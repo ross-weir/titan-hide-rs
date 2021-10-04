@@ -12,19 +12,20 @@ unsafe fn any_as_u8_slice<T: Sized>(p: &T) -> &[u8] {
 }
 
 #[derive(Debug, Clone)]
-pub struct TitanHide(String);
+pub struct TitanHide(String, u32);
 
 impl Default for TitanHide {
     fn default() -> Self {
         TitanHide {
             0: String::from("\\\\.\\TitanHide"),
+            1: 0xffffffff, // all settings enabled
         }
     }
 }
 
 impl TitanHide {
-    pub fn new(device_path: String) -> Self {
-        TitanHide { 0: device_path }
+    pub fn new(device_path: String, opts: u32) -> Self {
+        TitanHide { 0: device_path, 1: opts }
     }
 
     pub fn hide(&self, pid: u32) -> std::io::Result<()> {
@@ -46,7 +47,7 @@ impl TitanHide {
             .open(self.0.clone())?;
         let hide_info = HIDE_INFO {
             Command: cmd,
-            Type: 0xffffffff, // currently just use all
+            Type: self.1,
             Pid: pid,
         };
         let bytes = unsafe { any_as_u8_slice(&hide_info) };
