@@ -1,6 +1,5 @@
 [workspace]
 members = [
     "titan-hide",
-    "bindings/titan-hide-bindings",
-    "bindings/win-bindings",
+    "bindings",
 ]
