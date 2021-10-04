@@ -25,7 +25,10 @@ impl Default for TitanHide {
 
 impl TitanHide {
     pub fn new(device_path: String, opts: u32) -> Self {
-        TitanHide { 0: device_path, 1: opts }
+        TitanHide {
+            0: device_path,
+            1: opts,
+        }
     }
 
     pub fn hide(&self, pid: u32) -> std::io::Result<()> {
@@ -58,7 +61,7 @@ impl TitanHide {
 
 #[cfg(test)]
 mod tests {
-    use crate::{any_as_u8_slice};
+    use crate::any_as_u8_slice;
     use titan_hide_bindings::{HIDE_COMMAND_HidePid, HIDE_INFO};
 
     #[test]
